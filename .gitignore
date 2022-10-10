@@ -1,2 +1,4 @@
 .clover
 .idea
+build
+.gradle
