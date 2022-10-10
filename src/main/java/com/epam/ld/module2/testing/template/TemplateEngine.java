@@ -14,6 +14,13 @@ public class TemplateEngine {
      * @return the string
      */
     public String generateMessage(Template template, Client client) {
-        return null;
+        String content = template.getContent();
+        for (String key : template.getModel().keySet()) {
+            content = content.replace(key, template.getModel().get(key).toString());
+        }
+        return "From: " + template.getFrom() + "\n" +
+                "To: " + client.getAddresses() + "\n" +
+                "Subject: " + template.getSubject() + "\n" +
+                content;
     }
 }
