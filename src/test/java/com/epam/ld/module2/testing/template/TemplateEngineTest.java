@@ -1,6 +1,7 @@
 package com.epam.ld.module2.testing.template;
 
 import com.epam.ld.module2.testing.Client;
+import com.epam.ld.module2.testing.exception.PlaceholderMissedException;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -34,5 +35,21 @@ class TemplateEngineTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    void shouldThrowExceptionWhenPlaceholderNotProvided() {
+        Template template = new Template();
+        template.setFrom("from@mail.com");
+        template.setSubject("Greeting mail!");
+        template.setContent("Hello ${firstName} ${lastName}\nGreeting from ${from}");
+        Map<String, Object> mailModel = new HashMap<>();
+        mailModel.put("${firstName}", "John");
+        mailModel.put("${lastName}", "Doe");
+        template.setModel(mailModel);
+        Client client = new Client();
+        client.setAddresses("to@mail.com");
+
+        TemplateEngine engineTest = new TemplateEngine();
+        assertThrows(PlaceholderMissedException.class, () -> engineTest.generateMessage(template, client));
+    }
 
 }
