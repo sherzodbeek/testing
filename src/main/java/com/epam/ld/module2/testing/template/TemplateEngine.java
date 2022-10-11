@@ -21,7 +21,7 @@ public class TemplateEngine {
         for (String key : template.getModel().keySet()) {
             content = content.replace(key, template.getModel().get(key).toString());
         }
-        Pattern regex = Pattern.compile("(.*)\\$\\{(.*?)}(.*)", Pattern.DOTALL);
+        Pattern regex = Pattern.compile("(.*)#\\{(.*?)}(.*)", Pattern.DOTALL);
         if (regex.matcher(content).find()) {
             throw new PlaceholderMissedException("Placeholder missed!");
         }
