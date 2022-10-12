@@ -2,10 +2,7 @@ package com.epam.ld.module2.testing.template;
 
 import com.epam.ld.module2.testing.Client;
 import com.epam.ld.module2.testing.exception.PlaceholderMissedException;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DynamicTest;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestFactory;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.condition.DisabledOnJre;
 import org.junit.jupiter.api.condition.JRE;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -49,6 +46,7 @@ class TemplateEngineTest {
 
 
     @Test
+    @Tag("filterTest")
     void shouldGenerateMessage() {
         template.getModel().put("#{from}", "from@mail.com");
 
