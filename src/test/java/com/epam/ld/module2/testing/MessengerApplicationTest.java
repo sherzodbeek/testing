@@ -2,15 +2,17 @@ package com.epam.ld.module2.testing;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 
 class MessengerApplicationTest {
 
-
     @Test
     void shouldStartConsoleMode() {
-        fail();
+        MessengerApplication messengerApplication = mock(MessengerApplication.class);
+        messengerApplication.startConsoleMode();
+        verify(messengerApplication).startConsoleMode();
     }
 
 }
